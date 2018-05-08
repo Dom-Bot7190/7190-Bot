@@ -9,6 +9,7 @@ package org.usfirst.frc.team7190.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -25,6 +26,8 @@ public class Robot extends IterativeRobot {
 			= new DifferentialDrive(new Spark(0), new Spark(1));
 	private Joystick m_stick = new Joystick(0);
 	private Timer m_timer = new Timer();
+	boolean triggerValue;
+	Solenoid aSolenoid = new Solenoid(0);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -69,6 +72,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		m_robotDrive.arcadeDrive(m_stick.getY(), m_stick.getX());
+		
+		triggerValue = m_stick.getTrigger();
+		aSolenoid.set(triggerValue); //Fire flipper solenoid when trigger is pulled
 	}
 
 	/**
