@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	private Joystick m_stick = new Joystick(0);
 	private Timer m_timer = new Timer();
 	boolean triggerValue;
-	Solenoid aSolenoid = new Solenoid(0);
+	private Solenoid aSolenoid = new Solenoid(0);
 
 	/**
 	 * This function is run when the robot is first started up and should be
