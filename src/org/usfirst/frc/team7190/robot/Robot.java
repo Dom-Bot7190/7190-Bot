@@ -11,8 +11,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import org.usfirst.frc.team7190.robot.Commands.Baseline;
+import org.usfirst.frc.team7190.robot.Commands.SwitchDrop;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,9 +29,10 @@ public class Robot extends IterativeRobot {
 	private DifferentialDrive m_robotDrive
 			= new DifferentialDrive(new Spark(0), new Spark(1));
 	private Joystick m_stick = new Joystick(0);
-	private Timer m_timer = new Timer();
 	boolean triggerValue;
 	Solenoid aSolenoid = new Solenoid(0);
+	Command autonomousCommand;
+	SendableChooser autoChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -35,6 +40,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("Baseline",new Baseline());
+		autoChooser.addObject("Switch drop",new SwitchDrop());
 	}
 
 	/**
@@ -42,8 +50,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_timer.reset();
-		m_timer.start();
+		autonomousCommand = (Command) autoChooser.getSelected();
+		autonomousCommand.start();
 	}
 
 	/**
@@ -51,12 +59,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		// Drive for 2 seconds
-		if (m_timer.get() < 2.0) {
-			m_robotDrive.arcadeDrive(0.5, 0.0); // drive forwards half speed
-		} else {
-			m_robotDrive.stopMotor(); // stop robot
-		}
+		Scheduler.getInstance().run();
 	}
 
 	/**
