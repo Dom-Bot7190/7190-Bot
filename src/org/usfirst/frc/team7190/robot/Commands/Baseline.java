@@ -19,8 +19,8 @@ public class Baseline extends Command {
         }
 
     protected void execute() {
-        if (m_timer.get() < 2.0) {
-            m_robotDrive.arcadeDrive(0.5, 0.0); // drive forwards half speed
+        if (m_timer.get() < 3.0) {
+            m_robotDrive.arcadeDrive(0.7, 0.0); // drive forwards
         } else {
             m_robotDrive.stopMotor(); // stop robot
         }
