@@ -1,21 +1,13 @@
 package org.usfirst.frc.team7190.robot.Commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class SwitchDrop extends Command {
+public class SwitchDrop extends CommandGroup {
 
-    public SwitchDrop() {
-        super("SwitchDrop");
-    }
-
-    protected void initialize() {
-    }
-
-    protected void execute() {
-    }
-
-    protected boolean isFinished() {
-        return false;
+    public SwitchDrop(){
+        addSequential(new Baseline());
+        addSequential(new TurnRight());
+        addSequential(new FireSolenoid);
+        addSequential(new TurnLeft());
     }
 }
-
