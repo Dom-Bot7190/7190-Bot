@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import org.usfirst.frc.team7190.robot.Commands.Baseline;
+import org.usfirst.frc.team7190.robot.Commands.RSwitchDrop;
 import org.usfirst.frc.team7190.robot.Commands.SwitchDrop;
 
 /**
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Baseline",new Baseline());
 		autoChooser.addObject("Left switch drop",new SwitchDrop());
+		autoChooser.addObject("Right Switch drop",new RSwitchDrop());
 	}
 
 	/**
