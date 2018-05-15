@@ -1,15 +1,17 @@
 package org.usfirst.frc.team7190.robot.Commands;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class FireSolenoid extends Command {
+public class TurnRight extends Command {
     private Timer m_timer = new Timer();
-    private Solenoid aSolenoid = new Solenoid(0);
+    private DifferentialDrive m_robotDrive
+            = new DifferentialDrive(new Spark(0), new Spark(1));
 
-    public FireSolenoid() {
-        super("FireSolenoid");
+    public TurnRight() {
+        super("TurnLeft");
     }
 
     protected void initialize() {
@@ -19,9 +21,9 @@ public class FireSolenoid extends Command {
 
     protected void execute() {
         if (m_timer.get() < 2.0) {
-            aSolenoid.set(true); // fire solenoid
+            m_robotDrive.arcadeDrive(0.0, 0.5); // turn right
         } else {
-            aSolenoid.set(false);
+            m_robotDrive.stopMotor(); // stop robot
         }
     }
 

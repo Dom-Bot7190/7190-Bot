@@ -7,7 +7,7 @@ public class SwitchDrop extends CommandGroup {
     public SwitchDrop(){
         addSequential(new Baseline());
         addSequential(new TurnRight());
-        addSequential(new FireSolenoid);
+        addSequential(new FireSolenoid());
         addSequential(new TurnLeft());
     }
 }
