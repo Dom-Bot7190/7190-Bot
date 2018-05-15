@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Baseline",new Baseline());
-		autoChooser.addObject("Switch drop",new SwitchDrop());
+		autoChooser.addObject("Left switch drop",new SwitchDrop());
 	}
 
 	/**
